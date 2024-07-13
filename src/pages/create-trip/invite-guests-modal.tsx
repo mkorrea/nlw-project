@@ -8,7 +8,6 @@ interface InviteGuestsModalProps {
   removeEmailFromInvites: (email: string) => void 
 }
 
-
 export function InviteGuestsModal( {
   addNewEmailToInvite,
   closeGuestsModal,

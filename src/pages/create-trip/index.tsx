@@ -107,10 +107,10 @@ export function CreateTripPage() {
 
         {isGuestsModalOpen && (
           <InviteGuestsModal  
-          emailsToInvite={emailsToInvite}
-          addNewEmailToInvite={addNewEmailToInvite}
-          closeGuestsModal={closeGuestsModal}
-          removeEmailFromInvites={removeEmailFromInvites}
+            emailsToInvite={emailsToInvite}
+            addNewEmailToInvite={addNewEmailToInvite}
+            closeGuestsModal={closeGuestsModal}
+            removeEmailFromInvites={removeEmailFromInvites}
           />
         )}
 
