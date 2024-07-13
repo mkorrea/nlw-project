@@ -2,8 +2,8 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { ConfirmTripModal } from "./confirm-trip-modal";
-import { DestinationAndDateStep } from "./destination-and-date-step";
-import { InviteGuestsStep } from "./invite-guests-step";
+import { DestinationAndDateStep } from "./steps/destination-and-date-step";
+import { InviteGuestsStep } from "./steps/invite-guests-step";
 
 export function CreateTripPage() {
   const navigate = useNavigate()
@@ -85,45 +85,42 @@ export function CreateTripPage() {
           </p>
         </div>
 
-      <div className="space-y-4">
-        <DestinationAndDateStep  
-          closeGuestsInput={closeGuestsInput}
-          isGuestsInputOpen={isGuestsInputOpen}
-          openGuestsInput={openGuestsInput}
-        />
+        <div className="space-y-4">
+          <DestinationAndDateStep  
+            isGuestsInputOpen={isGuestsInputOpen}
+            closeGuestsInput={closeGuestsInput}
+            openGuestsInput={openGuestsInput}
+          />
 
-      
-      
-      {isGuestsInputOpen && (
-        <InviteGuestsStep 
-          emailsToInvite={emailsToInvite}
-          openConfirmTripModal={openConfirmTripModal}
-          openGuestsModal={openGuestsModal}
-        />
-      )}
-    </div>
-
-
-      {isGuestsModalOpen && (
-        <InviteGuestsModal  
-        emailsToInvite={emailsToInvite}
-        addNewEmailToInvite={addNewEmailToInvite}
-        closeGuestsModal={closeGuestsModal}
-        removeEmailFromInvites={removeEmailFromInvites}
-        />
-      )}
-
-
-      {isConfirmTripModalOpen && (
-        <ConfirmTripModal
-        closeConfirmTripModal={closeConfirmTripModal}
-        createTrip={createTrip}
-        />
-      )}
+        {isGuestsInputOpen && (
+          <InviteGuestsStep 
+            emailsToInvite={emailsToInvite}
+            openConfirmTripModal={openConfirmTripModal}
+            openGuestsModal={openGuestsModal}
+          />
+        )}
+        </div>
 
         <p className="text-sm text-zinc-500">
           By planning your trip with plann.er, you automatically agree to our  <a className="text-zinc-300 underline" href="#"> terms of use </a> and <a className="text-zinc-300 underline" href="#"> privacy policies. </a>
         </p>
+
+        {isGuestsModalOpen && (
+          <InviteGuestsModal  
+          emailsToInvite={emailsToInvite}
+          addNewEmailToInvite={addNewEmailToInvite}
+          closeGuestsModal={closeGuestsModal}
+          removeEmailFromInvites={removeEmailFromInvites}
+          />
+        )}
+
+        {isConfirmTripModalOpen && (
+          <ConfirmTripModal
+          closeConfirmTripModal={closeConfirmTripModal}
+          createTrip={createTrip}
+          />
+        )}
+
       </div>
     </div>
   );

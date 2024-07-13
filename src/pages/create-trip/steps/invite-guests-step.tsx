@@ -2,8 +2,8 @@ import { ArrowRight, UserRoundPlus } from "lucide-react"
 
 interface InviteGuestsStepProps {
   openGuestsModal: () => void
-  emailsToInvite: string[]
   openConfirmTripModal: () => void
+  emailsToInvite: string[]
 }
 
 export function InviteGuestsStep({
