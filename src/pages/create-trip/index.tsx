@@ -1,8 +1,9 @@
-import { ArrowRight, AtSign, Calendar, MapPin, Plus, Settings2, User, UserRoundPlus, X } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InviteGuestsModal } from "./invite-guests-modal";
 import { ConfirmTripModal } from "./confirm-trip-modal";
+import { DestinationAndDateStep } from "./destination-and-date-step";
+import { InviteGuestsStep } from "./invite-guests-step";
 
 export function CreateTripPage() {
   const navigate = useNavigate()
@@ -69,7 +70,8 @@ export function CreateTripPage() {
     setEmailsToInvite(newEmailList)
   }
 
-  function createTrip() {
+  function createTrip(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
     navigate('/trips/123')
   }
 
@@ -83,53 +85,24 @@ export function CreateTripPage() {
           </p>
         </div>
 
-        <div className="space-y-4">
-          <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-            <div className="flex items-center gap-2 flex-1">
-              <MapPin className="size-5 text-zinc-400" />
-              <input disabled={isGuestsInputOpen} type="text" placeholder="Where are you going ?" className="bg-transparent text-lg placeholder-zinc-400 -none flex-1" />
-            </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="size-5 text-zinc-400" />
-              <input disabled={isGuestsInputOpen} type="text" placeholder="When ?" className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none" />
-            </div>
-            <div className="w-px h-6 bg-zinc-800"></div>
-            {isGuestsInputOpen ? (
-              <button onClick={closeGuestsInput} className="bg-zinc-800 text-zinc-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700" >
-                Change location/date
-                <Settings2 className="size-5" />
-              </button>
-            ) : (
-              <button onClick={openGuestsInput} className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400" >
-                Continue
-                <ArrowRight className="size-5" />
-              </button>
-            )}
-          </div>
-          {isGuestsInputOpen && (
-            <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-              <button type="button" onClick={openGuestsModal} className="flex items-center gap-2 flex-1">
-                <UserRoundPlus className="size-5 text-zinc-400" />
-                {emailsToInvite.length > 0 ? (
-                  <span className="text-zinc-100 text-lg flex-1 text-left"> {emailsToInvite.length} people invited </span>
-                ) : (
-                  <span className="text-zinc-400 text-lg flex-1 text-left">Who will be on the trip ?</span>
-                )}
-              </button>
+      <div className="space-y-4">
+        <DestinationAndDateStep  
+          closeGuestsInput={closeGuestsInput}
+          isGuestsInputOpen={isGuestsInputOpen}
+          openGuestsInput={openGuestsInput}
+        />
 
-              <div className="w-px h-6 bg-zinc-800"></div>
-              <button onClick={openConfirmTripModal} className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400">
-                Confirm trip
-                <ArrowRight className="size-5" />
-              </button>
-            </div>
-          )}
-        </div>
+      
+      
+      {isGuestsInputOpen && (
+        <InviteGuestsStep 
+          emailsToInvite={emailsToInvite}
+          openConfirmTripModal={openConfirmTripModal}
+          openGuestsModal={openGuestsModal}
+        />
+      )}
+    </div>
 
-        <p className="text-sm text-zinc-500">
-          By planning your trip with plann.er, you automatically agree to our  <a className="text-zinc-300 underline" href="#"> terms of use </a> and <a className="text-zinc-300 underline" href="#"> privacy policies. </a>
-        </p>
-      </div>
 
       {isGuestsModalOpen && (
         <InviteGuestsModal  
@@ -143,11 +116,15 @@ export function CreateTripPage() {
 
       {isConfirmTripModalOpen && (
         <ConfirmTripModal
-          closeConfirmTripModal={closeConfirmTripModal}
-          createTrip={createTrip}
+        closeConfirmTripModal={closeConfirmTripModal}
+        createTrip={createTrip}
         />
       )}
 
+        <p className="text-sm text-zinc-500">
+          By planning your trip with plann.er, you automatically agree to our  <a className="text-zinc-300 underline" href="#"> terms of use </a> and <a className="text-zinc-300 underline" href="#"> privacy policies. </a>
+        </p>
+      </div>
     </div>
   );
 }
