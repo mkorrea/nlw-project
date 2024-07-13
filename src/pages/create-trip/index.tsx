@@ -142,8 +142,7 @@ export function CreateTripPage() {
 
 
       {isConfirmTripModalOpen && (
-        <ConfirmTripModal  
-          addNewEmailToInvite={addNewEmailToInvite}
+        <ConfirmTripModal
           closeConfirmTripModal={closeConfirmTripModal}
           createTrip={createTrip}
         />
