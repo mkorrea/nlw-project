@@ -1,5 +1,6 @@
 import { AtSign, Plus, X } from "lucide-react"
 import { FormEvent } from "react"
+import { Button } from "../../components/button"
 
 interface InviteGuestsModalProps {
   closeGuestsModal: () => void // função que nao tem retorno = void
@@ -54,10 +55,11 @@ export function InviteGuestsModal( {
             placeholder="Enter the guest's email" 
             className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" />
           </div>
-          <button type="submit" className="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400">
+
+          <Button type="submit" variant="primary">
             Invite
             <Plus className="size-5" />
-          </button>
+          </Button>
         </form>
 
       </div>
