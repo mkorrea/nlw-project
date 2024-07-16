@@ -5,11 +5,15 @@ import { Button } from "../../components/button";
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void
   createTrip: (event: FormEvent<HTMLFormElement>) => void
+  setOwnerName: (OwnerName: string) => void
+  setOwnerEmail: (OwnerEmail: string) => void
 }
 
 export function ConfirmTripModal( {
   closeConfirmTripModal,
   createTrip,
+  setOwnerName,
+  setOwnerEmail,
 }: ConfirmTripModalProps) {
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center ">
@@ -22,7 +26,7 @@ export function ConfirmTripModal( {
             </button>
           </div>
           <p className="text-sm text-zinc-400">
-            To complete the trip creation to <span className="font-semibold text-zinc-100">Florianópolis, Brazil</span> from <span className="font-semibold text-zinc-100">August 16 to 27, 2024</span>, fill in your details below:
+            To complete the trip creation to <span className="font-semibold text-zinc-100">New Jersey, United States</span> from <span className="font-semibold text-zinc-100">August 16 to 27, 2024</span>, fill in your details below:
           </p>
         </div>
 
@@ -32,7 +36,9 @@ export function ConfirmTripModal( {
             <input 
             name="name" 
             placeholder="Your full name" 
-            className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" />
+            className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" 
+            onChange={event => setOwnerName(event.target.value)}
+          /> 
           </div>
           <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
             <AtSign className="size-5 text-zinc-400" />
@@ -40,7 +46,9 @@ export function ConfirmTripModal( {
             type="email" 
             name="email" 
             placeholder="Your personal email" 
-            className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" />
+            className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" 
+            onChange={event => setOwnerEmail(event.target.value)}
+          />
           </div>
 
           <Button type="submit" variant="primary" size="full">
