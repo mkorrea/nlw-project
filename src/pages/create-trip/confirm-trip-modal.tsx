@@ -1,6 +1,7 @@
 import { AtSign, User, X } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
+import { Input } from "../../components/input";
 
 interface ConfirmTripModalProps {
   closeConfirmTripModal: () => void
@@ -33,22 +34,20 @@ export function ConfirmTripModal( {
         <form onSubmit={createTrip} className="space-y-3">
           <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
             <User className="size-5 text-zinc-400" />
-            <input 
-            name="name" 
-            placeholder="Your full name" 
-            className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" 
-            onChange={event => setOwnerName(event.target.value)}
-          /> 
+            <Input 
+               name="name" 
+               placeholder="Your full name"
+               onChange={event => setOwnerName(event.target.value)}
+            />
           </div>
           <div className="h-14 px-4 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center gap-2">
             <AtSign className="size-5 text-zinc-400" />
-            <input 
-            type="email" 
-            name="email" 
-            placeholder="Your personal email" 
-            className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1" 
-            onChange={event => setOwnerEmail(event.target.value)}
-          />
+            <Input 
+              type="email"
+              name="email" 
+              placeholder="Your personal email" 
+              onChange={event => setOwnerEmail(event.target.value)}
+            />
           </div>
 
           <Button type="submit" variant="primary" size="full">

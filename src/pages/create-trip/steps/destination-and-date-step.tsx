@@ -4,6 +4,7 @@ import { useState } from "react"
 import { DateRange, DayPicker } from "react-day-picker"
 import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
+import { Input } from "../../../components/input";
 
 interface DestinationAndDateStepProps {
   isGuestsInputOpen: boolean
@@ -40,13 +41,11 @@ export function DestinationAndDateStep({
     <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
       <div className="flex items-center gap-2 flex-1">
         <MapPin className="size-5 text-zinc-400" />
-        <input 
-        disabled={isGuestsInputOpen} 
-        type="text" 
-        placeholder="Where are you going ?" 
-        className="bg-transparent text-lg placeholder-zinc-400 -none flex-1" 
-        onChange={(event) => setDestination(event.target.value)}
-      />
+        <Input
+          disabled={isGuestsInputOpen}
+          placeholder="Where are you going ?" 
+          onChange={(event) => setDestination(event.target.value)}
+        />
       </div>
 
       <button disabled={isGuestsInputOpen} onClick={openDatePicker} className="flex items-center gap-2 text-left">
