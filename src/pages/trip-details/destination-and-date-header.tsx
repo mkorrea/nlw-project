@@ -13,7 +13,11 @@ interface Trip {
   is_confirmed: boolean
 }
 
-export function DestinationAndDateHeader() {
+interface DestinationAndDateHeaderProps {
+  openChangeDestinationAndDateModal: () => void
+}
+
+export function DestinationAndDateHeader({ openChangeDestinationAndDateModal }: DestinationAndDateHeaderProps) {
   const { tripId } = useParams()
   const [ trip, setTrip ] = useState<Trip | undefined>()
 
@@ -24,6 +28,14 @@ export function DestinationAndDateHeader() {
   const displayedDate = trip
   ? format(trip.starts_at, "LLL dd").concat(' to ').concat(format(trip.ends_at, "LLL dd"))
   : null
+
+  // function changeLocationAndDate() {
+    // api.put(`trips/${tripId}`, {
+    //   destination,
+    //   starts_at:
+    //   ends_at: 
+    // })
+  // }
   
   return(
     <div className="px-4 h-16 rounded bg-zinc-900 shadow-shape flex items-center justify-between">
@@ -40,11 +52,13 @@ export function DestinationAndDateHeader() {
         
         <div className="w-px h-6 bg-zinc-800" />
 
-        <Button variant="secondary" size="default">
+        <Button variant="secondary" size="default" onClick={openChangeDestinationAndDateModal}>
           Change location/date 
           <Settings2 className="size-5" />
         </Button>
       </div>
+      
+
     </div>
   )
 }

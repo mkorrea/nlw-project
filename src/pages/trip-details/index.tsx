@@ -6,9 +6,11 @@ import { Guests } from "./guests";
 import { Activities } from "./activities";
 import { DestinationAndDateHeader } from "./destination-and-date-header";
 import { Button } from "../../components/button";
+import { ChangeDestinationAndDate } from "./change-destination-and-date-modal";
 
 export function TripDetailsPage() {
   const [ isCreateActivityModalOpen, setIsCreateActivityModalOpen] = useState(false)
+  const [ isChangeDestinationAndDateOpen, setIsChangeDestinationAndDateOpen ] = useState(false)
 
   function openCreateActivityModal() {
     setIsCreateActivityModalOpen(true)
@@ -18,9 +20,19 @@ export function TripDetailsPage() {
     setIsCreateActivityModalOpen(false)
   }
   
+  function openChangeDestinationAndDateModal() {
+    setIsChangeDestinationAndDateOpen(true)
+  }
+
+  function closeChangeDestinationAndDateModal() {
+    setIsChangeDestinationAndDateOpen(false)
+  }
+  
   return (
     <div className="max-w-6xl px-6 py-10 mx-auto space-y-8">
-      <DestinationAndDateHeader />
+      <DestinationAndDateHeader 
+        openChangeDestinationAndDateModal={openChangeDestinationAndDateModal}
+      />
       <main className="flex gap-16 px-4">
         <div className="flex-1 space-y-6">
           <div className="flex items-center justify-between">
@@ -48,7 +60,12 @@ export function TripDetailsPage() {
           closeCreateActivityModal={closeCreateActivityModal}
         />
       )}
-      
+
+      {isChangeDestinationAndDateOpen && (
+        <ChangeDestinationAndDate 
+          closeChangeDestinationAndDateModal={closeChangeDestinationAndDateModal}
+        />
+      )}
 
     </div>
   )
